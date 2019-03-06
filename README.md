@@ -37,6 +37,14 @@ func main() {
 	id.GetSequenceCode()
 	// 获取验证码
 	id.GetVerifyCode()
+	
+	// 18位、15位身份证判断
+	switch identity.GetBitType() {
+	case identity.BitType18:
+		// 18位身份证处理
+	case identity.BitType15:
+		// 15位身份证处理
+	}
 }
 
 ```
