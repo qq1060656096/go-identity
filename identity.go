@@ -20,6 +20,9 @@ const (
 
 	// 生日
 	Birthday = "birthday"
+	// 生日时间
+	BirthdayTime = "birthdayTime"
+
 	// 性别
 	Sex = "sex"
 	// 顺序码
@@ -175,11 +178,11 @@ func (id *Identity) setBirthday() error {
 		id.dataMap[Birthday] = "19" + id.data[6:12]
 	}
 	v := id.dataMap[Birthday].(string)
-	_, err := time.Parse("2006-01-02", fmt.Sprintf("%s-%s-%s", v[0:4], v[4:6], v[6:8]))
+	t, err := time.Parse("2006-01-02", fmt.Sprintf("%s-%s-%s", v[0:4], v[4:6], v[6:8]))
 	if err != nil {
 		return errors.New(fmt.Sprintf("identity: identity card birthday error,(birthday: %v), %#v", v, err))
 	}
-	//id.dataMap[Birthday] = t
+	id.dataMap[BirthdayTime] = t
 	return nil
 }
 
@@ -187,6 +190,12 @@ func (id *Identity) setBirthday() error {
 func (id *Identity) GetBirthday() interface{} {
 	v := id.dataMap[Birthday]
 	return v
+}
+
+// GetBirthdayTime 获取生日
+func (id *Identity) GetBirthdayTime() time.Time {
+	v := id.dataMap[BirthdayTime]
+	return v.(time.Time)
 }
 
 // setSex 设置性别

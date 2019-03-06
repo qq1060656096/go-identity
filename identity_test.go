@@ -3,6 +3,7 @@ package identity
 import (
 	"github.com/stretchr/testify/assert"
 	"testing"
+	"time"
 )
 
 var tests = map[string]string {
@@ -22,6 +23,11 @@ func TestNew15(t *testing.T) {
 
 	assert.Equal(t, id.GetBirthday(), "19860203")
 	assert.Equal(t, id.GetSex(), SexMale)
+
+	assert.Equal(t, id.GetBirthdayTime().Year(), 1986)
+	assert.Equal(t, id.GetBirthdayTime().Month(), time.Month(2))
+	assert.Equal(t, id.GetBirthdayTime().Day(), 3)
+	assert.Equal(t, AgeAt(id.GetBirthdayTime(), time.Date(2019, 3, 6, 0, 0, 0, 0, time.UTC)), 33)
 
 	assert.Equal(t, id.GetSequenceCode(), "555")
 	assert.Equal(t, id.GetVerifyCode(), "")
