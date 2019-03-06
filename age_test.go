@@ -11,6 +11,14 @@ func TestAgeAt(t *testing.T) {
 	b := time.Date(2016, 1, 1 ,0 ,0 ,0 , 0, time.UTC)
 	n := time.Date(2019, 1, 1 ,0 ,0 ,0 , 0, time.UTC)
 	assert.Equal(t, AgeAt(b, n), 3)
+
+	b = time.Date(2016, 2, 3 ,0 ,0 ,0 , 0, time.UTC)
+	n = time.Date(2019, 2, 2 ,0 ,0 ,0 , 0, time.UTC)
+	assert.Equal(t, AgeAt(b, n), 2)
+
+	b = time.Date(2016, 2, 3 ,0 ,0 ,0 , 0, time.UTC)
+	n = time.Date(2019, 2, 3 ,0 ,0 ,0 , 0, time.UTC)
+	assert.Equal(t, AgeAt(b, n), 3)
 }
 
 // 测试年份是不是闰年

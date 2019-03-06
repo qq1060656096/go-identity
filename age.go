@@ -7,6 +7,9 @@ import (
 // AgeAt 获取特定时间之间的年龄
 func AgeAt(birthDate time.Time, nowDate time.Time) int {
 	age := nowDate.Year() - birthDate.Year()
+	if nowDate.Month() <= birthDate.Month() && nowDate.Day() < birthDate.Day(){
+		age -= 1
+	}
 	return age
 }
 
